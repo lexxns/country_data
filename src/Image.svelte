@@ -1,17 +1,6 @@
 <script>
-    import { onMount } from 'svelte';
     export let src;
     export let alt;
-
-    let loaded = false;
-    let thisImage;
-
-    onMount(() => {
-        thisImage.onload = () => {
-        loaded = true
-        }
-    });
-
 </script>
 
 <style >
@@ -21,4 +10,6 @@
     }
 </style>
 
-<img {src} {alt} class:loaded bind:this={thisImage} loading="lazy" />
+<figure class="image is-4by3">
+    <img class="is-rounded" src={src} {alt}>
+</figure>

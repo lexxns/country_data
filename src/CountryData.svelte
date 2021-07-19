@@ -39,18 +39,31 @@
 	});
 
 </script>
+<h2>Countries that Border China</h2>
+<div class="container">
+	
+	<table class="table is-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Region</th>
+				<th>Area</th>
+				<th>Population</th>
+				<th>Borders</th>
+				<th>Flag</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each $bordersChina as c }
+			<Country name={c.name}
+				region={c.region}
+				area={c.area}
+				population={c.population}
+				flag={c.flag}
+				borders={c.borders}
+			/>
+		{/each}
+		</tbody>
 
-	<h2>Countries that Border China</h2>
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Region</th>
-			<th>Area</th>
-			<th>Population</th>
-			<th>Borders</th>
-			<th>Flag</th>
-		</tr>
-	{#each $bordersChina as c }
-		<Country {...c}/>
-	{/each}
 	</table>
+</div>
