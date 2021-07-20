@@ -53,10 +53,10 @@
   }
 </script>
 
-<div class="tile is-ancestor is-vertical">
-  <div class="tile is-parent">
-    <article class="tile is-child notification is-info">
-      <p class="title">Countries that Border {$selectedCountryName}</p>
+<div class="field">
+  <label class="label">Selected Country</label>
+  <div class="control">
+    <div class="select">
       <select bind:value={$selectedCountryName}>
         {#each $countryData.filter((c) => c.borders.length > 0) as country}
           <option value={country.name}>
@@ -64,6 +64,27 @@
           </option>
         {/each}
       </select>
+    </div>
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Top {$topBorderLength} countries by borders</label>
+  <div class="control">
+    <input
+      type="range"
+      on:change={updateTopBorderLength}
+      min="1"
+      max="20"
+      value="10"
+    />
+  </div>
+</div>
+
+<div class="tile is-ancestor is-vertical">
+  <div id="borderingCountries" class="tile is-parent">
+    <article class="tile is-child notification is-info">
+      <p class="title">Countries that Border {$selectedCountryName}</p>
       <table class="table is-bordered is-centered is-fullwidth">
         <thead>
           <tr>
@@ -90,16 +111,10 @@
       </table>
     </article>
   </div>
-  <div class="tile is-parent">
+
+  <div id="topCountries" class="tile is-parent">
     <article class="tile is-child notification is-info">
       <p class="title">Top {$topBorderLength} countries by number of borders</p>
-      <input
-        type="range"
-        on:change={updateTopBorderLength}
-        min="1"
-        max="20"
-        value="10"
-      />
       <CountryBarChart
         labels={$topByBorders.map((c) => c.name)}
         borderData={$topByBorders.map((c) => c.borders.length)}
