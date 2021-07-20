@@ -6,14 +6,18 @@
 
   export const countryData = writable([]);
 
-  export const topTenByBorders = derived(countryData, ($countryData) =>
-    $countryData
-      .sort((a, b) => b.borders.length - a.borders.length)
-      .slice(0, 10)
+  let topBorderLength = writable([10]);
+
+  export const topByBorders = derived(
+    [countryData, topBorderLength],
+    ([$countryData, $topBorderLength]) =>
+      $countryData
+        .sort((a, b) => b.borders.length - a.borders.length)
+        .slice(0, $topBorderLength)
   );
 
-  export const china = derived(topTenByBorders, ($topTenByBorders) =>
-    $topTenByBorders.filter((country) => country.name === "China").pop()
+  export const china = derived(topByBorders, ($topByBorders) =>
+    $topByBorders.filter((country) => country.name === "China").pop()
   );
 
   export const bordersChina = derived(china, ($china) =>
@@ -38,6 +42,10 @@
       }))
     );
   });
+
+  function updateTopBorderLength(event) {
+    topBorderLength.set(event.target.value);
+  }
 </script>
 
 <div class="tile is-ancestor is-vertical">
@@ -72,11 +80,17 @@
   </div>
   <div class="tile is-parent">
     <article class="tile is-child notification is-info">
-      <p class="title">Top Ten Countries by Borders</p>
-      <!-- random rbg colors -->
+      <p class="title">Top {$topBorderLength} countries by number of borders</p>
+      <input
+        type="range"
+        on:change={updateTopBorderLength}
+        min="1"
+        max="20"
+        value="10"
+      />
       <CountryBarChart
-        labels={$topTenByBorders.map((c) => c.name)}
-        borderData={$topTenByBorders.map((c) => c.borders.length)}
+        labels={$topByBorders.map((c) => c.name)}
+        borderData={$topByBorders.map((c) => c.borders.length)}
       />
     </article>
   </div>
