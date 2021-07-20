@@ -1,69 +1,89 @@
 <script>
-	import { onMount } from 'svelte';
-	import { derived, writable } from 'svelte/store';
-    import Country from './Country.svelte';
+  import { onMount } from "svelte";
+  import { derived, writable } from "svelte/store";
+  import Country from "./Country.svelte";
+  import CountryBarChart from "./CountryBarChart.svelte";
 
+  export const countryData = writable([]);
 
-	export const countryData = writable([]);
-	
-	export const topTenByBorders = derived(
-		countryData,
-		$countryData => $countryData.sort((a, b) => b.borders.length - a.borders.length).slice(0, 10)
-	);
-	
-	export const china = derived(
-		topTenByBorders,
-		$topTenByBorders => $topTenByBorders.filter(country => country.name === 'China').pop()
-	);
-	
-	export const bordersChina = derived(
-		china,
-		$china => $countryData.filter(c => $china.borders.includes(c.alpha3Code))
-							  .sort((a, b) => a.name.localeCompare(b.name))
-	);
-	
+  export const topTenByBorders = derived(countryData, ($countryData) =>
+    $countryData
+      .sort((a, b) => b.borders.length - a.borders.length)
+      .slice(0, 10)
+  );
 
-	onMount(async () => {
-		const res = await fetch('https://restcountries.eu/rest/v2/all');
-		const data = await res.json();
+  export const china = derived(topTenByBorders, ($topTenByBorders) =>
+    $topTenByBorders.filter((country) => country.name === "China").pop()
+  );
 
-		countryData.update(() => data.map(c => ({
-			name: c.name,
-			region: c.region,
-			area: c.area,
-			population: c.population,
-			flag: c.flag,
-			borders: c.borders,
-			alpha3Code: c.alpha3Code,
-		})));
-	});
+  export const bordersChina = derived(china, ($china) =>
+    $countryData
+      .filter((c) => $china.borders.includes(c.alpha3Code))
+      .sort((a, b) => a.name.localeCompare(b.name))
+  );
 
+  onMount(async () => {
+    const res = await fetch("https://restcountries.eu/rest/v2/all");
+    const data = await res.json();
+
+    countryData.update(() =>
+      data.map((c) => ({
+        name: c.name,
+        region: c.region,
+        area: c.area,
+        population: c.population,
+        flag: c.flag,
+        borders: c.borders,
+        alpha3Code: c.alpha3Code,
+      }))
+    );
+  });
 </script>
-<h2>Countries that Border China</h2>
-<div class="container">
-	
-	<table class="table is-bordered">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Region</th>
-				<th>Area</th>
-				<th>Population</th>
-				<th>Borders</th>
-				<th>Flag</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each $bordersChina as c }
-			<Country name={c.name}
-				region={c.region}
-				area={c.area}
-				population={c.population}
-				flag={c.flag}
-				borders={c.borders}
-			/>
-		{/each}
-		</tbody>
 
-	</table>
+<div class="tile is-ancestor is-vertical">
+  <div class="tile is-parent">
+    <article class="tile is-child notification is-info">
+      <p class="title">Countries that Border China</p>
+      <table class="table is-bordered is-centered is-fullwidth">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Region</th>
+            <th>Area</th>
+            <th>Population</th>
+            <th>Borders</th>
+            <th>Flag</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each $bordersChina as c}
+            <Country
+              name={c.name}
+              region={c.region}
+              area={c.area}
+              population={c.population}
+              flag={c.flag}
+              borders={c.borders}
+            />
+          {/each}
+        </tbody>
+      </table>
+    </article>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child notification is-info">
+      <p class="title">Top Ten Countries by Borders</p>
+      <CountryBarChart
+        labels={$topTenByBorders.map((c) => c.name)}
+        borderData={$topTenByBorders.map((c) => c.borders.length)}
+      />
+    </article>
+  </div>
 </div>
+
+<style lang="scss">
+  .is-centered {
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
