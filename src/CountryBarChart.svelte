@@ -5,29 +5,44 @@
   export let labels = [];
   export let borderData = [];
 
-  let data = {
+  let colors = [];
+
+  $: if (colors) {
+    for (let i = 0; i < labels.length; i++) {
+      colors.push([
+        Math.floor(Math.random() * 255),
+        Math.floor(Math.random() * 255),
+        Math.floor(Math.random() * 255),
+      ]);
+    }
+    colors = colors;
+  }
+
+  const plugins = [
+    {
+      id: "custom_canvas_background_color",
+      beforeDraw: (chart) => {
+        const ctx = chart.canvas.getContext("2d");
+        ctx.save();
+        ctx.globalCompositeOperation = "destination-over";
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, chart.width, chart.height);
+        ctx.restore();
+      },
+    },
+  ];
+
+  $: data = {
     labels: labels,
     datasets: [
       {
         label: "Number of Borders",
         data: borderData,
-        backgroundColor: [
-          "rgba(255, 134,159,0.4)",
-          "rgba(98,  182, 239,0.4)",
-          "rgba(255, 218, 128,0.4)",
-          "rgba(113, 205, 205,0.4)",
-          "rgba(170, 128, 252,0.4)",
-          "rgba(255, 177, 101,0.4)",
-        ],
+        backgroundColor: colors
+          ? colors.map((c) => `rgba(${c.join(",")}, 0.4)`)
+          : [],
         borderWidth: 2,
-        borderColor: [
-          "rgba(255, 134, 159, 1)",
-          "rgba(98,  182, 239, 1)",
-          "rgba(255, 218, 128, 1)",
-          "rgba(113, 205, 205, 1)",
-          "rgba(170, 128, 252, 1)",
-          "rgba(255, 177, 101, 1)",
-        ],
+        borderColor: colors ? colors.map((c) => `rgba(${c.join(",")},1)`) : [],
       },
     ],
   };
@@ -61,6 +76,6 @@
 
 <MDBRow>
   <MDBCol md="8" class="mx-auto">
-    <Bar {data} {options} />
+    <Bar {data} {options} {plugins} />
   </MDBCol>
 </MDBRow>

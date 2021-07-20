@@ -73,6 +73,7 @@
   <div class="tile is-parent">
     <article class="tile is-child notification is-info">
       <p class="title">Top Ten Countries by Borders</p>
+      <!-- random rbg colors -->
       <CountryBarChart
         labels={$topTenByBorders.map((c) => c.name)}
         borderData={$topTenByBorders.map((c) => c.borders.length)}
