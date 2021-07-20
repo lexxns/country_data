@@ -7,22 +7,27 @@
   export const countryData = writable([]);
 
   let topBorderLength = writable([10]);
+  let selectedCountryName = writable("China");
 
   export const topByBorders = derived(
     [countryData, topBorderLength],
     ([$countryData, $topBorderLength]) =>
-      $countryData
+      [...$countryData]
         .sort((a, b) => b.borders.length - a.borders.length)
         .slice(0, $topBorderLength)
   );
 
-  export const china = derived(topByBorders, ($topByBorders) =>
-    $topByBorders.filter((country) => country.name === "China").pop()
+  export const selectedCountry = derived(
+    [countryData, selectedCountryName],
+    ([$countryData, $selectedCountryName]) =>
+      $countryData
+        .filter((country) => country.name === $selectedCountryName)
+        .pop()
   );
 
-  export const bordersChina = derived(china, ($china) =>
+  export const bordersChina = derived(selectedCountry, ($selectedCountry) =>
     $countryData
-      .filter((c) => $china.borders.includes(c.alpha3Code))
+      .filter((c) => $selectedCountry.borders.includes(c.alpha3Code))
       .sort((a, b) => a.name.localeCompare(b.name))
   );
 
@@ -51,7 +56,14 @@
 <div class="tile is-ancestor is-vertical">
   <div class="tile is-parent">
     <article class="tile is-child notification is-info">
-      <p class="title">Countries that Border China</p>
+      <p class="title">Countries that Border {$selectedCountryName}</p>
+      <select bind:value={$selectedCountryName}>
+        {#each $countryData.filter((c) => c.borders.length > 0) as country}
+          <option value={country.name}>
+            {country.name}
+          </option>
+        {/each}
+      </select>
       <table class="table is-bordered is-centered is-fullwidth">
         <thead>
           <tr>
