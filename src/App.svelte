@@ -53,6 +53,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Country Data</title>
+</svelte:head>
+
 <body class="has-background-link-light">
   <section class="hero is-small is-primary">
     <div class="hero-body">
