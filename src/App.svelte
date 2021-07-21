@@ -5,44 +5,38 @@
 
   let pdfGenerated = 0;
 
-  //convert everything in body element to a pdf file
+  function generatePage(pdf, querySelector, addPage) {
+    html2canvas(document.querySelector(`#${querySelector}`), {
+      useCORS: true,
+      allowTaint: true,
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+      windowWidth: document.documentElement.offsetWidth,
+      windowHeight: document.documentElement.offsetHeight,
+    }).then(function (canvas) {
+      let img = new Image();
+      img.src = canvas.toDataURL("image/png");
+      img.onload = function () {
+        if (addPage) {
+          pdf.addPage();
+        }
+        pdf.addImage(
+          img,
+          0,
+          0,
+          pdf.internal.pageSize.width,
+          pdf.internal.pageSize.height
+        );
+        pdfGenerated++;
+        showPdf(pdf);
+      };
+    });
+  }
+
   function generatePdf() {
     let pdf = new jsPDF("landscape");
-    html2canvas(document.querySelector("#topCountries"), {
-      useCORS: true,
-    }).then(function (canvas) {
-      let img = new Image();
-      img.src = canvas.toDataURL("image/png");
-      img.onload = function () {
-        pdf.addImage(
-          img,
-          0,
-          0,
-          pdf.internal.pageSize.width,
-          pdf.internal.pageSize.height
-        );
-        pdfGenerated++;
-        showPdf(pdf);
-      };
-    });
-    html2canvas(document.querySelector("#borderingCountries"), {
-      useCORS: true,
-    }).then(function (canvas) {
-      let img = new Image();
-      img.src = canvas.toDataURL("image/png");
-      img.onload = function () {
-        pdf.addPage();
-        pdf.addImage(
-          img,
-          0,
-          0,
-          pdf.internal.pageSize.width,
-          pdf.internal.pageSize.height
-        );
-        pdfGenerated++;
-        showPdf(pdf);
-      };
-    });
+    generatePage(pdf, "topCountries", false);
+    generatePage(pdf, "borderingCountries", true);
   }
 
   function showPdf(pdf) {
