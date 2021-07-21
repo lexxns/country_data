@@ -25,7 +25,7 @@
         .pop()
   );
 
-  export const bordersChina = derived(selectedCountry, ($selectedCountry) =>
+  export const bordersSelected = derived(selectedCountry, ($selectedCountry) =>
     $countryData
       .filter((c) => $selectedCountry.borders.includes(c.alpha3Code))
       .sort((a, b) => a.name.localeCompare(b.name))
@@ -100,7 +100,7 @@
           </tr>
         </thead>
         <tbody>
-          {#each $bordersChina as c}
+          {#each $bordersSelected as c}
             <Country
               name={c.name}
               region={c.region}

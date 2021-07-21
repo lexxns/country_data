@@ -11,7 +11,5 @@
   img {
     max-height: 200px;
     max-width: 200px;
-    /* min-height: 200px;
-    min-width: 200px; */
   }
 </style>
