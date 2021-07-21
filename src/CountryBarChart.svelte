@@ -25,7 +25,7 @@
         const ctx = chart.canvas.getContext("2d");
         ctx.save();
         ctx.globalCompositeOperation = "destination-over";
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "#f5f5f5";
         ctx.fillRect(0, 0, chart.width, chart.height);
         ctx.restore();
       },
