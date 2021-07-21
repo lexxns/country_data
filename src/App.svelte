@@ -56,7 +56,7 @@
 <body class="has-background-link-light">
   <section class="hero is-small is-primary">
     <div class="hero-body">
-      <p class="title">Domin Country Data</p>
+      <p class="title">Country Data</p>
       <p class="subtitle">Jordan Aspinall</p>
       <button on:click={generatePdf}>createPdf</button>
     </div>
