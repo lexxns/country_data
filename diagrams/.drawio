@@ -1,4 +1,4 @@
-<mxfile modified="2021-07-21T12:56:44.215Z" host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="_uePCHpdW0iB7-uahj1V" version="14.9.1" type="github">
+<mxfile modified="2021-07-21T13:55:17.195Z" host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="u0SHisc8QDoOOPmsdCh7" version="14.9.1" type="github">
   <diagram id="Ht1M8jgEwFfnCIfOTk4-" name="Page-1">
     <mxGraphModel dx="1422" dy="1593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -160,7 +160,7 @@
             <mxPoint x="837.25" y="-594.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="oc2KEHiFoT-k8S5DnZOh-39" value="Store data in dynamo" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="oc2KEHiFoT-k8S5DnZOh-38">
+        <mxCell id="oc2KEHiFoT-k8S5DnZOh-39" value="Store data in timestream" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="oc2KEHiFoT-k8S5DnZOh-38">
           <mxGeometry x="0.6019" y="1" relative="1" as="geometry">
             <mxPoint x="-37" y="17" as="offset" />
           </mxGeometry>
