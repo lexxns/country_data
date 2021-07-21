@@ -1,4 +1,4 @@
-<mxfile modified="2021-07-21T13:55:17.195Z" host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="u0SHisc8QDoOOPmsdCh7" version="14.9.1" type="github">
+<mxfile modified="2021-07-21T14:41:24.836Z" host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="zQhPsl-eMXy78rxZl_R2" version="14.9.1" type="github">
   <diagram id="Ht1M8jgEwFfnCIfOTk4-" name="Page-1">
     <mxGraphModel dx="1422" dy="1593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -207,9 +207,6 @@
             <mxPoint x="540" y="-419" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="oc2KEHiFoT-k8S5DnZOh-47" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 13px;&quot;&gt;Web App&lt;/font&gt;" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=#ffffff;fontSize=13;spacingTop=2;image;image=img/lib/ibm/infrastructure/dashboard.svg;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;spacingRight=0;spacingLeft=62;" vertex="1" parent="1">
-          <mxGeometry x="900" y="-410" width="60" height="60" as="geometry" />
-        </mxCell>
         <mxCell id="oc2KEHiFoT-k8S5DnZOh-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;endArrow=open;endFill=0;strokeColor=#808080;strokeWidth=2;exitX=0.65;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oc2KEHiFoT-k8S5DnZOh-40" target="oc2KEHiFoT-k8S5DnZOh-47">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
@@ -267,6 +264,9 @@
             <mxPoint x="800" y="-210" as="sourcePoint" />
             <mxPoint x="800" y="-50" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="oc2KEHiFoT-k8S5DnZOh-47" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 13px;&quot;&gt;Web App&lt;/font&gt;" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=#ffffff;fontSize=13;spacingTop=2;image;image=img/lib/ibm/infrastructure/dashboard.svg;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;spacingRight=0;spacingLeft=62;" vertex="1" parent="1">
+          <mxGeometry x="900" y="-410" width="60" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
