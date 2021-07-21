@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c0f67447-333c-46b4-bb9d-477977920830/deploy-status)](https://app.netlify.com/sites/amazing-hamilton-e3b574/deploys)
 
-# Domin Interview app
+# Country Data App
 
 This project is built with [Svelte](https://svelte.dev).
 An open-source front end compiler, which generates code to manipulate the DOM
@@ -16,13 +16,13 @@ The app is running on [My Website](https://lexxns.com)
 Clone:
 
 ```
-git clone git@github.com:lexxns/domin_web_app.git
+git clone git@github.com:lexxns/country_data.git
 ```
 
 Install the dependencies
 
 ```bash
-cd domin_web_app
+cd country_data
 npm install
 ```
 
