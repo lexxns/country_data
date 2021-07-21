@@ -22,7 +22,7 @@
           pdf.internal.pageSize.height
         );
         pdfGenerated++;
-        printPdf(pdf);
+        showPdf(pdf);
       };
     });
     html2canvas(document.querySelector("#borderingCountries"), {
@@ -40,14 +40,14 @@
           pdf.internal.pageSize.height
         );
         pdfGenerated++;
-        printPdf(pdf);
+        showPdf(pdf);
       };
     });
   }
 
-  function printPdf(pdf) {
+  function showPdf(pdf) {
     if (pdfGenerated === 2) {
-      pdf.save("country-data.pdf");
+      window.open(pdf.output("bloburl"), "_blank");
       pdfGenerated = 0;
     }
   }

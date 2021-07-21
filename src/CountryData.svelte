@@ -54,10 +54,10 @@
 </script>
 
 <div class="field">
-  <label class="label">Selected Country</label>
   <div class="control">
+    <label for="selectedCountryDropdown" class="label">Selected Country</label>
     <div class="select">
-      <select bind:value={$selectedCountryName}>
+      <select id="selectedCountryDropdown" bind:value={$selectedCountryName}>
         {#each $countryData.filter((c) => c.borders.length > 0) as country}
           <option value={country.name}>
             {country.name}
@@ -69,9 +69,12 @@
 </div>
 
 <div class="field">
-  <label class="label">Top {$topBorderLength} countries by borders</label>
   <div class="control">
+    <label for="topBorderLengthInput" class="label"
+      >Top {$topBorderLength} countries by borders</label
+    >
     <input
+      id="topBorderLengthInput"
       type="range"
       on:change={updateTopBorderLength}
       min="1"
