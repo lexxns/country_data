@@ -35,6 +35,6 @@ npm run start
 
 Navigate to [localhost:5000](http://localhost:5000).
 
-## Web app documentation & Interview Part 2
+## Web app documentation
 
-Slides explaining how this App works and system architecture design can be found in the diagrams folder of this project
+Slides explaining how this App works and example system architecture design can be found in the diagrams folder of this project
